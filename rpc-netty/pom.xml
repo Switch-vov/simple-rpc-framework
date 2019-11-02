@@ -44,6 +44,12 @@
             <groupId>com.itranswarp</groupId>
             <artifactId>compiler</artifactId>
         </dependency>
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.60</version>
+        </dependency>
     </dependencies>
 
 </project>
