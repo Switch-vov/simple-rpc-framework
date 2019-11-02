@@ -14,8 +14,11 @@
 package com.github.liyue2008.rpc.server;
 
 import com.github.liyue2008.rpc.hello.HelloService;
+import com.github.liyue2008.rpc.hello.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author LiYue
@@ -28,6 +31,22 @@ public class HelloServiceImpl implements HelloService {
     public String hello(String name) {
         LOGGER.info("HelloServiceImpl收到: {}.", name);
         String ret = "Hello, " + name;
+        LOGGER.info("HelloServiceImpl返回: {}.", ret);
+        return ret;
+    }
+
+    @Override
+    public String hello(String name, List<Integer> values) {
+        LOGGER.info("HelloServiceImpl收到: {},{}.", name, values);
+        String ret = "Hello, " + name + ", " + values;
+        LOGGER.info("HelloServiceImpl返回: {}.", ret);
+        return ret;
+    }
+
+    @Override
+    public String hello(String name, User user) {
+        LOGGER.info("HelloServiceImpl收到: {},{}.", name, user);
+        String ret = "Hello, " + name + ", " + user;
         LOGGER.info("HelloServiceImpl返回: {}.", ret);
         return ret;
     }

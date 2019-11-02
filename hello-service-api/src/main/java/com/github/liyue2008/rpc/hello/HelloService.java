@@ -13,10 +13,16 @@
  */
 package com.github.liyue2008.rpc.hello;
 
+import java.util.List;
+
 /**
  * @author LiYue
  * Date: 2019/9/20
  */
 public interface HelloService {
     String hello(String name);
+
+    String hello(String name, List<Integer> values);
+
+    String hello(String name, User user);
 }
