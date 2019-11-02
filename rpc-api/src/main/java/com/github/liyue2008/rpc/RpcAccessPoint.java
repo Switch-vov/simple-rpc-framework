@@ -2,9 +2,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@ import java.util.Collection;
  * @author LiYue
  * Date: 2019/9/20
  */
-public interface RpcAccessPoint extends Closeable{
+public interface RpcAccessPoint extends Closeable {
     /**
      * 客户端获取远程服务的引用
      * @param uri 远程服务地址
@@ -51,7 +51,7 @@ public interface RpcAccessPoint extends Closeable{
     default NameService getNameService(URI nameServiceUri) {
         Collection<NameService> nameServices = ServiceSupport.loadAll(NameService.class);
         for (NameService nameService : nameServices) {
-            if(nameService.supportedSchemes().contains(nameServiceUri.getScheme())) {
+            if (nameService.supportedSchemes().contains(nameServiceUri.getScheme())) {
                 nameService.connect(nameServiceUri);
                 return nameService;
             }

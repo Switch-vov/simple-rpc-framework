@@ -2,9 +2,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,14 +57,14 @@ public class MetadataSerializer implements Serializer<Metadata> {
         ByteBuffer buffer = ByteBuffer.wrap(bytes, offset, length);
         buffer.putShort(toShortSafely(entry.size()));
 
-        entry.forEach((k,v) -> {
-            byte [] keyBytes = k.getBytes(StandardCharsets.UTF_8);
+        entry.forEach((k, v) -> {
+            byte[] keyBytes = k.getBytes(StandardCharsets.UTF_8);
             buffer.putShort(toShortSafely(keyBytes.length));
             buffer.put(keyBytes);
 
             buffer.putShort(toShortSafely(v.size()));
             for (URI uri : v) {
-                byte [] uriBytes = uri.toASCIIString().getBytes(StandardCharsets.UTF_8);
+                byte[] uriBytes = uri.toASCIIString().getBytes(StandardCharsets.UTF_8);
                 buffer.putShort(toShortSafely(uriBytes.length));
                 buffer.put(uriBytes);
             }
@@ -92,7 +92,7 @@ public class MetadataSerializer implements Serializer<Metadata> {
         int sizeOfMap = buffer.getShort();
         for (int i = 0; i < sizeOfMap; i++) {
             int keyLength = buffer.getShort();
-            byte [] keyBytes = new byte [keyLength];
+            byte[] keyBytes = new byte[keyLength];
             buffer.get(keyBytes);
             String key = new String(keyBytes, StandardCharsets.UTF_8);
 
@@ -101,9 +101,9 @@ public class MetadataSerializer implements Serializer<Metadata> {
             List<URI> uriList = new ArrayList<>(uriListSize);
             for (int j = 0; j < uriListSize; j++) {
                 int uriLength = buffer.getShort();
-                byte [] uriBytes = new byte [uriLength];
+                byte[] uriBytes = new byte[uriLength];
                 buffer.get(uriBytes);
-                URI uri  = URI.create(new String(uriBytes, StandardCharsets.UTF_8));
+                URI uri = URI.create(new String(uriBytes, StandardCharsets.UTF_8));
                 uriList.add(uri);
             }
             metadata.put(key, uriList);
